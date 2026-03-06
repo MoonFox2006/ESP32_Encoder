@@ -85,9 +85,9 @@ void ARDUINO_ISR_ATTR Encoder::encISR(void *arg) {
     e = 0;
   }
   if (state != ENC_CLICK) {
+    _this->_btnPressed = false;
     xQueueSendFromISR(_this->_queue, &state, NULL);
   }
-  _this->_btnPressed = false;
 }
 
 void ARDUINO_ISR_ATTR Encoder::btnISR(void *arg) {
@@ -159,3 +159,4 @@ void EncoderCb::cbTask(void *arg) {
     }
   }
 }
+
